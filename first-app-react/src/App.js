@@ -1,7 +1,7 @@
 
 
 import './App.css';
-import AppTodo from './components/AppTodo';
+import PostApp from './components/callApi/PostApp';
 
 
 
@@ -10,7 +10,7 @@ function App() {
   return (
     <div style={{marginLeft:100}}>
        
-         <AppTodo/>
+         <PostApp/>
 
     </div>
   );
