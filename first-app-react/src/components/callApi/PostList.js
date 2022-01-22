@@ -8,6 +8,7 @@ PostList.defaultProps = {
   posts: [],
 };
 function PostList(props) {
+  console.log("re-render: list");
   const { posts } = props;
   return (
     <ul>
@@ -17,5 +18,5 @@ function PostList(props) {
     </ul>
   );
 }
-
-export default PostList;
+// export default PostList;
+export default React.memo(PostList);

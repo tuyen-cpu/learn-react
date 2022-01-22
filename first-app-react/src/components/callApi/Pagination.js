@@ -41,4 +41,6 @@ function Pagination(props) {
   );
 }
 
-export default Pagination;
+export default React.memo(Pagination);
+
+// export default Pagination;

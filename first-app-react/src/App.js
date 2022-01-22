@@ -1,17 +1,10 @@
-
-
-import './App.css';
-import PostApp from './components/callApi/PostApp';
-
-
+import "./App.css";
+import Index from "./components/SelectImageApp/Index";
 
 function App() {
-
   return (
-    <div style={{marginLeft:100}}>
-       
-         <PostApp/>
-
+    <div style={{ marginLeft: 100 }}>
+      <Index />
     </div>
   );
 }

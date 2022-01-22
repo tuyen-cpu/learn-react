@@ -27,6 +27,7 @@ function PostApp() {
         const { data, pagination } = responseJSON;
         setPosts(data);
         setPagination(pagination);
+        console.log("setpot,pagination");
       } catch (error) {
         console.log(error.message);
       }
@@ -34,7 +35,6 @@ function PostApp() {
     fetchPostList();
   }, [filters]);
   function handleChangePage(newPage) {
-    console.log(newPage);
     setFilters({
       ...filters,
       _page: newPage,
