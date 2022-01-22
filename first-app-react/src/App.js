@@ -1,10 +1,10 @@
 import "./App.css";
-import Index from "./components/SelectImageApp/Index";
-
+// import AppTodo from "./components/todoApp/AppTodo";
+import AppTodo from "./components/callApi/PostApp";
 function App() {
   return (
     <div style={{ marginLeft: 100 }}>
-      <Index />
+      <AppTodo />
     </div>
   );
 }

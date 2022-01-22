@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Pagination from "./Pagination";
 import PostList from "./PostList";
 import queryString from "query-string";
 function PostApp() {
   console.log("render - Post App");
-
   const [posts, setPosts] = useState([]);
   const [pagination, setPagination] = useState({
     _page: 1,
@@ -17,7 +16,6 @@ function PostApp() {
   });
 
   useEffect(() => {
-    console.log("render - effect call api");
     async function fetchPostList() {
       try {
         const paraString = queryString.stringify(filters);
@@ -27,19 +25,18 @@ function PostApp() {
         const { data, pagination } = responseJSON;
         setPosts(data);
         setPagination(pagination);
-        console.log("setpot,pagination");
       } catch (error) {
         console.log(error.message);
       }
     }
     fetchPostList();
   }, [filters]);
-  function handleChangePage(newPage) {
+  const handleChangePage = useCallback((newPage) => {
     setFilters({
       ...filters,
       _page: newPage,
     });
-  }
+  }, []);
   return (
     <div>
       <PostList posts={posts} />

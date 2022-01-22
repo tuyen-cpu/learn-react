@@ -3,7 +3,16 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-
+function emitComments(id) {
+  setInterval(() => {
+    window.dispatchEvent(
+      new CustomEvent(`lesson-${id}`, { detail: `Content of lesson ${id}` })
+    );
+  }, 2000);
+}
+emitComments(1);
+emitComments(2);
+emitComments(3);
 ReactDOM.render(
   // <React.StrictMode>
   <App />,
