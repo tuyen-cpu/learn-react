@@ -41,6 +41,17 @@
     text-align: center;
 }
 
-#root {
-    background: #999;
+.btn {
+    margin-left: 2px;
+    padding: 5px 8px;
+    color: #ff4081;
+    border: 1px solid #ff4081;
+    cursor: pointer;
+    border-radius: 4px;
+    background: #fff;
+}
+
+button:active {
+    box-shadow: 0 2px #ff4081;
+    transform: translateY(1px);
 }

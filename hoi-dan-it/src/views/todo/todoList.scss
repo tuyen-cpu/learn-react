@@ -1,0 +1,23 @@
+button:active {
+    box-shadow: 0 2px #ff4081;
+    transform: translateY(1px);
+}
+
+.btn+.btn {
+    margin-left: 4px;
+}
+
+.title {
+    color: #ff4081;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 8px;
+}
+
+.btnEdit {}
+
+.item {
+    margin-top: 10px;
+}
+
+.btnDelete {}

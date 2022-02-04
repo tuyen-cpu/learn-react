@@ -30,6 +30,7 @@ export default class AddTodo extends Component {
           }}
         />
         <button
+          className="btn"
           onClick={() => {
             this.handleAddToto();
           }}
