@@ -1,6 +1,6 @@
-import { hobbyReducer } from "./hobby";
+import hobbyReducer from "./hobby";
+import userReducer from "./user";
 import { combineReducers } from "redux";
-import { userReducer } from "./user";
 
 const rootReducer = combineReducers({
   hobby: hobbyReducer,
