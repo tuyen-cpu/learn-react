@@ -16,7 +16,9 @@ export default function AuthProvider({ children }) {
         setUser({ displayName, email, uid, photoURL });
         setIsLoading(false);
         navigate("/");
+        return;
       }
+      setIsLoading(false);
       navigate("/login");
     });
     return () => {

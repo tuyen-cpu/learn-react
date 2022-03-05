@@ -1,21 +1,37 @@
 import React from "react";
 import { Row, Col, Typography, Button } from "antd";
-import { auth, fbProvider, signInWithPopup } from "../../firebase/config";
-
+import {
+  auth,
+  fbProvider,
+  signInWithPopup,
+  additionalUserInfo,
+  db,
+} from "../../firebase/config";
+import { collection, addDoc } from "firebase/firestore";
+import { addDocument } from "../../firebase/services";
 const { Title } = Typography;
 
 const Login = () => {
-  const handleFBLogin = () => {
-    signInWithPopup(auth, fbProvider)
-      .then((result) => {})
-      .catch((error) => {
-        // Handle Errors here.
-        console.error("lỗi");
-      });
+  const handleFBLogin = async () => {
+    const data = await signInWithPopup(auth, fbProvider);
+    const { user } = data;
+    const additionalUser = additionalUserInfo(data);
+    console.log(user);
+    addDocument("users", {
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      uid: user.displayName,
+      provider: additionalUser.providerId,
+    });
+    // const docRef = await addDoc(collection(db, "user"), {
+    //   displayName: user.displayName,
+    //   email: user.email,
+    //   photoURL: user.photoURL,
+    //   uid: user.displayName,
+    //   provider: additionalUser.providerId,
+    // });
   };
-
-  //
-  // useNavigate.push("")
 
   return (
     <div>

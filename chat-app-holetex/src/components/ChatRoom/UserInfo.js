@@ -1,6 +1,9 @@
 import { Avatar, Button, Typography } from "antd";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { auth, db } from "../../firebase/config";
+import { doc, onSnapshot, collection } from "firebase/firestore";
+import { AuthConext } from "../../context/AuthProvider";
 const WrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -13,13 +16,30 @@ const WrapperStyled = styled.div`
   }
 `;
 const UserInfo = () => {
+  // useEffect(() => {
+  //   const unsubscribe = onSnapshot(collection(db, "users"), (snapshot) => {
+  //     const data = snapshot.docs.map((doc) => ({
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     }));
+  //     console.dir({ data, snapshot, docs: snapshot.docs });
+  //     // ...
+  //   });
+  // }, []);
+  const {
+    user: { displayName, photoURL },
+  } = useContext(AuthConext);
   return (
     <WrapperStyled>
       <div>
-        <Avatar>A</Avatar>
-        <Typography.Text className="username">ABC</Typography.Text>
+        <Avatar src={photoURL}>
+          {photoURL ? "" : displayName?.charAt(0)?.toUpperCase()}
+        </Avatar>
+        <Typography.Text className="username">{displayName}</Typography.Text>
       </div>
-      <Button ghost>Logout</Button>
+      <Button ghost onClick={() => auth.signOut()}>
+        Logout
+      </Button>
     </WrapperStyled>
   );
 };

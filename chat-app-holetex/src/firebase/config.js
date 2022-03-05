@@ -1,10 +1,15 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import {
+  getAuth,
+  FacebookAuthProvider,
+  signInWithPopup,
+  getAdditionalUserInfo,
+  connectAuthEmulator,
+} from "firebase/auth";
 
-import { getAuth, FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-
-import "firebase/auth";
-import "firebase/firestore";
+// import "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyDUFgCi_hZzmN7fIj6SqlZBhNCpXEcBFog",
   authDomain: "chat-app-holetex-e8cdf.firebaseapp.com",
@@ -17,8 +22,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
 const fbProvider = new FacebookAuthProvider();
 
 const auth = getAuth();
-export { auth, fbProvider, signInWithPopup };
+const db = getFirestore();
+connectAuthEmulator(auth, "http://localhost:9099");
+if (window.location.hostname === "localhost") {
+  connectFirestoreEmulator(db, "localhost", 8080);
+}
+const additionalUserInfo = getAdditionalUserInfo;
+
+export { auth, fbProvider, signInWithPopup, additionalUserInfo, db };
