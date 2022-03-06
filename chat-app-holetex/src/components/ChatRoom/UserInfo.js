@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { auth, db } from "../../firebase/config";
 import { doc, onSnapshot, collection } from "firebase/firestore";
 import { AuthConext } from "../../context/AuthProvider";
+import useFirestore from "../../hooks/useFirestore";
 const WrapperStyled = styled.div`
   display: flex;
   justify-content: space-between;
@@ -26,6 +27,8 @@ const UserInfo = () => {
   //     // ...
   //   });
   // }, []);
+  // const ss = useFirestore("users");
+  // console.log(ss);
   const {
     user: { displayName, photoURL },
   } = useContext(AuthConext);

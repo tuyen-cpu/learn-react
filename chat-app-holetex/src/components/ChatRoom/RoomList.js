@@ -3,6 +3,7 @@ import { Button, Collapse, Typography } from "antd";
 
 import React, { useContext, useMemo } from "react";
 import styled from "styled-components";
+import { AppContext } from "../../context/AppProvider";
 import { AuthConext } from "../../context/AuthProvider";
 import useFirestore from "../../hooks/useFirestore";
 const { Panel } = Collapse;
@@ -27,23 +28,8 @@ const LinkStyled = styled(Typography.Link)`
   color: white;
 `;
 export default function RoomList() {
-  // {
-  //name:'room name'
-  // description:'mota',
-  //members:[uid1,uid2]
-  //}
-  const {
-    user: { uid },
-  } = useContext(AuthConext);
-  const roomsCondition = useMemo(() => {
-    return {
-      fieldName: "members",
-      operator: "array-contains",
-      compareValue: uid,
-    };
-  }, [uid]);
-  const rooms = useFirestore("rooms", roomsCondition);
-  console.log({ rooms });
+  const { rooms } = useContext(AppContext);
+  console.log(rooms);
   return (
     <Collapse ghost defaultActiveKey={["1"]}>
       <PanelStyled header="List of Rooms" key="1">
